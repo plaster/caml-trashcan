@@ -4,9 +4,9 @@
  * http://no-maddojp.hatenablog.com/entry/2013/12/26/232400
 * opamいれた
 * opam init
-  * 記録とりわすれたけど、<code>.zshrc</code>いじるけどいいか？ってきかれた。
-    * いいよってこたえた。最初nにしちゃったけど思い直してもっかいopam initしてyにした。
-    * opamでなにかやったらさいご必ずこれを
+ * 記録とりわすれたけど、<code>.zshrc</code>いじるけどいいか？ってきかれた。
+  * いいよってこたえた。最初nにしちゃったけど思い直してもっかいopam initしてyにした。
+   * opamでなにかやったらさいご必ずこれを
     ```
     % eval `opam config env`
     ```
@@ -53,7 +53,7 @@
   ∗  installed lwt.2.5.0
   Done.
   ```
-  * Findlib入れるべしとあるのだけれど、ocamlfindが入ってくれたからこれでよかったりしないかな？
+ * Findlib入れるべしとあるのだけれど、ocamlfindが入ってくれたからこれでよかったりしないかな？
    * http://projects.camlcity.org/projects/findlib.html
 
-    > There is also a tool (ocamlfind) for interpreting the META files, so that it is very easy to use libraries in programs and scripts.
+     > There is also a tool (ocamlfind) for interpreting the META files, so that it is very easy to use libraries in programs and scripts.
