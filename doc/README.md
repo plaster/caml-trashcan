@@ -1,0 +1,4 @@
+# まとめ
+
+* opamつよい
+* opam install js_of_ocaml.2.5
