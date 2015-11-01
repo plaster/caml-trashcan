@@ -57,3 +57,6 @@
    * http://projects.camlcity.org/projects/findlib.html
 
      > There is also a tool (ocamlfind) for interpreting the META files, so that it is very easy to use libraries in programs and scripts.
+
+* js_of_ocaml は aptitude install js-of-ocaml で入れた、、、いれてしまった
+  * opamでやりなおすべき？
