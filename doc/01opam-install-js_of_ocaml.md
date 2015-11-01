@@ -86,3 +86,29 @@ The following changes have been performed
 The former state can be restored with:
     opam switch import "~/.opam/4.02.1/backup/state-20151001151034.export"
 ```
+* aptitudeでいれたやつを消して opamだけでやることにする。
+```
+[ plaster@ropecat:~ ]
+% sudo aptitude remove ocaml
+[sudo] password for plaster: 
+Sorry, try again.
+[sudo] password for plaster: 
+以下のパッケージが削除されます:          
+  ocaml ocaml-base{u} 
+更新: 0 個、新規インストール: 0 個、削除: 2 個、保留: 47 個。
+0  バイトのアーカイブを取得する必要があります。展開後に 9,153 k バイトのディスク領域が解放されます。
+先に進みますか? [Y/n/?] 
+```
+```
+[ plaster@ropecat:~ ]
+% sudo aptitude remove js-of-ocaml
+以下のパッケージが削除されます:          
+  camlp4{u} js-of-ocaml ledit{u} libderiving-ocsigen-ocaml{u} libderiving-ocsigen-ocaml-dev{u} libev-dev{u} libev4{u} libfindlib-ocaml{u} libfindlib-ocaml-dev{u} libjs-of-ocaml{u} 
+  libjs-of-ocaml-dev{u} liblwt-ocaml{u} liblwt-ocaml-dev{u} liblwt-ocaml-doc{u} libncurses5-dev{u} libpcre-ocaml{u} libpcre-ocaml-dev{u} libpcre3-dev{u} libpcrecpp0{u} 
+  libreact-ocaml{u} libreact-ocaml-dev{u} libtext-ocaml{u} libtext-ocaml-dev{u} libtinfo-dev{u} libtype-conv-camlp4-dev{u} ocaml-base-nox{u} ocaml-findlib{u} ocaml-interp{u} 
+  ocaml-nox{u} 
+更新: 0 個、新規インストール: 0 個、削除: 29 個、保留: 47 個。
+0  バイトのアーカイブを取得する必要があります。展開後に 122 M バイトのディスク領域が解放されます。
+先に進みますか? [Y/n/?] 
+```
+* しかし opam install js_of_ocaml は相変わらずエラー。<code>eval \`opam config env\` </code>してからやりなおしてもやっぱりエラー。
