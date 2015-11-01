@@ -1,3 +1,7 @@
+* 目的 js_of_ocaml で遊べるようにする
+* みてる
+ * http://d.hatena.ne.jp/camlspotter/20111015/1318664763
+ * http://no-maddojp.hatenablog.com/entry/2013/12/26/232400
 * opamいれた
 * opam init
   * 記録とりわすれたけど、<code>.zshrc</code>いじるけどいいか？ってきかれた。
@@ -50,3 +54,6 @@
   Done.
   ```
   * Findlib入れるべしとあるのだけれど、ocamlfindが入ってくれたからこれでよかったりしないかな？
+   * http://projects.camlcity.org/projects/findlib.html
+
+    > There is also a tool (ocamlfind) for interpreting the META files, so that it is very easy to use libraries in programs and scripts.
