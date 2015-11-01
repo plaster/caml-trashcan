@@ -60,3 +60,4 @@
 
 * js_of_ocaml は aptitude install js-of-ocaml で入れた、、、いれてしまった
   * opamでやりなおすべき？
+    * [次](01opam-install-js_of_ocaml.md) へ
