@@ -272,3 +272,41 @@ Done.
 原因どうもこれっぽい。
 https://github.com/mirage/ocaml-base64/commit/ed444d33e98f5fac921bfb01c36f25753963c287
 あたらしいbase64が必要なのにopamが入れるbase64が古いせいでコケてる感じ。
+
+というわけで新しいbase64を入れてみようとするのだが、、、
+
+```
+[ plaster@ropecat:~ ]
+% opam install base64.2.0.0
+The following actions will be performed:
+  ⊘  remove    cppo        1.3.1                 [conflicts with ocamlfind]
+  ↘  downgrade ocamlfind   1.5.6 to 1.5.2        [required by base64]
+  ↘  downgrade ppx_tools   0.99.3 to 0.99.2      [uses ocamlfind]
+  ↘  downgrade menhir      20151030 to 20140422  [uses ocamlfind]
+  ∗  install   base-bytes  base                  [required by base64]
+  ↻  recompile camlp4      4.02+6                [uses ocamlfind]
+  ↗  upgrade   base64      1.0.0 to 2.0.0      
+  ↻  recompile lwt         2.5.0                 [uses ocamlfind]
+  ↻  recompile js_of_ocaml 2.5                   [uses ocamlfind]
+===== ∗  1   ↻  3   ↗  1   ↘  3   ⊘  1 =====
+Do you want to continue ? [Y/n] n
+```
+
+```
+[ plaster@ropecat:~ ]
+% opam install base64.1.1.0
+The following actions will be performed:
+  ⊘  remove    cppo        1.3.1                 [conflicts with ocamlfind]
+  ↘  downgrade ocamlfind   1.5.6 to 1.5.2        [required by base64]
+  ↘  downgrade ppx_tools   0.99.3 to 0.99.2      [uses ocamlfind]
+  ↘  downgrade menhir      20151030 to 20140422  [uses ocamlfind]
+  ∗  install   base-bytes  base                  [required by base64]
+  ↻  recompile camlp4      4.02+6                [uses ocamlfind]
+  ↗  upgrade   base64      1.0.0 to 1.1.0      
+  ↻  recompile lwt         2.5.0                 [uses ocamlfind]
+  ↻  recompile js_of_ocaml 2.5                   [uses ocamlfind]
+===== ∗  1   ↻  3   ↗  1   ↘  3   ⊘  1 =====
+Do you want to continue ? [Y/n] n
+```
+
+ほかのパッケージは base64.1.1.0や2.0.0にするとダウングレードしてしまう。もーなんなんだこれ。。。 
