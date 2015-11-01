@@ -247,3 +247,28 @@ The following actions will be performed:
 Done.
 ```
 いけた！
+4.02.1側もなおす。
+```
+[ plaster@ropecat:~ ]
+% opam switch 4.02.1     
+# To setup the new switch in the current shell, you need to run:
+eval `opam config env`
+[ plaster@ropecat:~ ]
+% eval `opam config env`
+[ plaster@ropecat:~ ]
+% opam install js_of_ocaml.2.5
+The following actions will be performed:
+  ∗  install js_of_ocaml 2.5
+
+=-=- Gathering sources =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[js_of_ocaml] Archive in cache
+
+=-=- Processing actions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+∗  installed js_of_ocaml.2.5
+Done.
+```
+
+
+原因どうもこれっぽい。
+https://github.com/mirage/ocaml-base64/commit/ed444d33e98f5fac921bfb01c36f25753963c287
+あたらしいbase64が必要なのにopamが入れるbase64が古いせいでコケてる感じ。
