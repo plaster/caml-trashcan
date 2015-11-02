@@ -1,7 +1,7 @@
 # ここまでのあらすじ
 
 * [opamいれた](00start.md)。
-* [opam install js_of_ocaml.2.5 した](01opam-install-js_of_ocaml.md)。
+* [opam install ~~js_of_ocaml.2.5~~ js_of_ocaml.2.6 した](01opam-install-js_of_ocaml.md)。
 
 # js_of_ocaml してみたい
 
