@@ -310,3 +310,122 @@ Do you want to continue ? [Y/n] n
 ```
 
 ほかのパッケージは base64.1.1.0や2.0.0にするとダウングレードしてしまう。もーなんなんだこれ。。。 
+
+まあ変な状態に陥っちゃったとしても .opam 消せばすっきりやり直せそうなので、とりあえずやってみよう。
+
+```
+[ plaster@ropecat:~/work/caml-trashcan ]
+% opam install base64.2.0.0
+The following actions will be performed:
+  ⊘  remove    cppo        1.3.1                 [conflicts with ocamlfind]
+  ↘  downgrade ocamlfind   1.5.6 to 1.5.2        [required by base64]
+  ↘  downgrade ppx_tools   0.99.3 to 0.99.2      [uses ocamlfind]
+  ↘  downgrade menhir      20151030 to 20140422  [uses ocamlfind]
+  ∗  install   base-bytes  base                  [required by base64]
+  ↻  recompile camlp4      4.02+6                [uses ocamlfind]
+  ↗  upgrade   base64      1.0.0 to 2.0.0      
+  ↻  recompile lwt         2.5.0                 [uses ocamlfind]
+  ↻  recompile js_of_ocaml 2.5                   [uses ocamlfind]
+===== ∗  1   ↻  3   ↗  1   ↘  3   ⊘  1 =====
+Do you want to continue ? [Y/n] y
+
+=-=- Gathering sources =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[camlp4] Archive in cache
+[js_of_ocaml] Archive in cache
+[lwt] Archive in cache
+[menhir] Archive in cache
+[default] https://opam.ocaml.org/archives/base64.2.0.0+opam.tar.gz downloaded
+[ocamlfind] Archive in cache
+[default] https://opam.ocaml.org/archives/ocamlfind.1.5.2+opam.tar.gz downloaded
+[default] https://opam.ocaml.org/archives/menhir.20140422+opam.tar.gz downloaded
+[default] https://opam.ocaml.org/archives/ppx_tools.0.99.2+opam.tar.gz downloaded
+
+=-=- Processing actions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+⊘  removed   base64.1.0.0
+⊘  removed   cppo.1.3.1
+⊘  removed   js_of_ocaml.2.5
+⊘  removed   lwt.2.5.0
+⊘  removed   menhir.20151030
+⊘  removed   ppx_tools.0.99.3
+⊘  removed   camlp4.4.02+6
+⊘  removed   ocamlfind.1.5.6
+∗  installed ocamlfind.1.5.2
+∗  installed base-bytes.base
+∗  installed ppx_tools.0.99.2
+∗  installed base64.2.0.0
+∗  installed menhir.20140422
+∗  installed camlp4.4.02+6
+∗  installed lwt.2.5.0
+∗  installed js_of_ocaml.2.5
+Done.
+```
+
+おっけー。
+
+```
+[ plaster@ropecat:~/work/caml-trashcan ]
+% opam install js_of_ocaml.2.6
+The following actions will be performed:
+  ↘  downgrade base64      2.0.0 to 1.0.0     [required by js_of_ocaml]
+  ⊘  remove    base-bytes  base          
+  ∗  install   cppo        1.1.2              [required by js_of_ocaml]
+  ↗  upgrade   js_of_ocaml 2.5 to 2.6    
+===== ∗  1   ↗  1   ↘  1   ⊘  1 =====
+```
+
+うええええ。いやあかんでしょ
+
+>   ↘  downgrade base64      2.0.0 to 1.0.0     [required by js_of_ocaml]
+
+むりだから！それむりだから！（
+
+```Do you want to continue ? [Y/n] y
+
+=-=- Gathering sources =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[base64] Archive in cache
+[js_of_ocaml] Archive in cache
+[default] https://opam.ocaml.org/archives/cppo.1.1.2+opam.tar.gz downloaded
+
+=-=- Processing actions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+⊘  removed   base64.2.0.0
+⊘  removed   base-bytes.base
+⊘  removed   js_of_ocaml.2.5
+∗  installed cppo.1.1.2
+∗  installed base64.1.0.0
+[ERROR] The compilation of js_of_ocaml failed at "make build".
+Processing  6/6: [js_of_ocaml: ocamlfind remove]
+#=== ERROR while installing js_of_ocaml.2.6 ===================================#
+# opam-version 1.2.2
+# os           linux
+# command      make build
+# path         /home/plaster/.opam/4.02.3/build/js_of_ocaml.2.6
+# compiler     4.02.3
+# exit-code    2
+# env-file     /home/plaster/.opam/4.02.3/build/js_of_ocaml.2.6/js_of_ocaml-31778-60459a.env
+# stdout-file  /home/plaster/.opam/4.02.3/build/js_of_ocaml.2.6/js_of_ocaml-31778-60459a.out
+# stderr-file  /home/plaster/.opam/4.02.3/build/js_of_ocaml.2.6/js_of_ocaml-31778-60459a.err
+### stdout ###
+# [...]
+# ocamlfind ocamlopt -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -for-pack Compiler -g -c javascript.ml
+# ocamlfind ocamlc     -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -c json.mli
+# ocamlfind ocamlopt -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -for-pack Compiler -g -c json.ml
+# ocamlfind ocamlc     -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -c vlq64.mli
+# ocamlfind ocamlopt -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -for-pack Compiler -g -c vlq64.ml
+# ocamlfind ocamlc     -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -c source_map.mli
+# ocamlfind ocamlopt -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -for-pack Compiler -g -c source_map.ml
+# ocamlfind ocamlc     -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -c js_output.mli
+# ocamlfind ocamlopt -w +A-4-7-9-37-38-41-44-45 -I +compiler-libs -safe-string -package cmdliner -package base64 -package findlib -for-pack Compiler -g -c js_output.ml
+# make[1]: ディレクトリ `/home/plaster/.opam/4.02.3/build/js_of_ocaml.2.6/compiler' から出ます
+### stderr ###
+# [...]
+# findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/plaster/.opam/4.02.3/lib/ocaml, /home/plaster/.opam/4.02.3/lib/ocaml/compiler-libs
+# findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/plaster/.opam/4.02.3/lib/ocaml, /home/plaster/.opam/4.02.3/lib/ocaml/compiler-libs
+# findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/plaster/.opam/4.02.3/lib/ocaml, /home/plaster/.opam/4.02.3/lib/ocaml/compiler-libs
+# findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/plaster/.opam/4.02.3/lib/ocaml, /home/plaster/.opam/4.02.3/lib/ocaml/compiler-libs
+# findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/plaster/.opam/4.02.3/lib/ocaml, /home/plaster/.opam/4.02.3/lib/ocaml/compiler-libs
+# findlib: [WARNING] Interface topdirs.cmi occurs in several directories: /home/plaster/.opam/4.02.3/lib/ocaml, /home/plaster/.opam/4.02.3/lib/ocaml/compiler-libs
+# File "js_output.ml", line 1079, characters 43-53:
+# Error: Unbound module B64
+# make[1]: *** [js_output.cmx] エラー 2
+# make: *** [compiler] エラー 2
+```
