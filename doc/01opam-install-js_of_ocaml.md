@@ -437,6 +437,74 @@ Processing  6/6: [js_of_ocaml: ocamlfind remove]
 # make: *** [compiler] エラー 2
 ```
 
+# opam pin
+
+base64 2.0.0 をリトライ。
+
+```
+% opam install base64.2.0.0
+The following actions will be performed:
+  ∗  install   base-bytes base                [required by base64]
+  ↘  downgrade cppo       1.3.1 to 1.1.2
+  ↗  upgrade   base64     1.0.0 to 2.0.0
+===== ∗  1   ↗  1   ↘  1 =====
+Do you want to continue ? [Y/n] y
+
+=-=- Gathering sources =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[base64] Archive in cache
+[cppo] Archive in cache
+
+=-=- Processing actions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+∗  installed base-bytes.base
+⊘  removed   base64.1.0.0
+⊘  removed   cppo.1.3.1
+∗  installed cppo.1.1.2
+∗  installed base64.2.0.0
+Done.
+```
+
+このままだとダメなのだが、、、
+
+```
+[ plaster@ropecat:~/work/caml-trashcan/copy-of-js_of_ocaml-example/cubes ]
+% opam install js_of_ocaml.2.6
+The following actions will be performed:
+  ↘  downgrade base64      2.0.0 to 1.0.0     [required by js_of_ocaml]
+  ⊘  remove    base-bytes  base          
+  ↗  upgrade   js_of_ocaml 2.5 to 2.6    
+===== ↗  1   ↘  1   ⊘  1 =====
+Do you want to continue ? [Y/n] n
+```
+
+opam pinなるものをみつけたので、ダメ元で base64 を 2.0.0 に固定してみる。
+
+```
+[ plaster@ropecat:~/work/caml-trashcan/copy-of-js_of_ocaml-example/cubes ]
+% opam pin add base64 2.0.0
+base64 is now version-pinned to 2.0.0
+
+[base64] https://github.com/mirage/ocaml-base64/archive/v2.0.0.tar.gz downloaded
+```
+
+さて
+
+```
+[ plaster@ropecat:~/work/caml-trashcan/copy-of-js_of_ocaml-example/cubes ]
+% opam install js_of_ocaml.2.6
+The following actions will be performed:
+  ↗  upgrade js_of_ocaml 2.5 to 2.6
+
+=-=- Gathering sources =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[js_of_ocaml] Archive in cache
+
+=-=- Processing actions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+⊘  removed   js_of_ocaml.2.5
+∗  installed js_of_ocaml.2.6
+Done.
+```
+
+いけた！！？？
+
 # けっきょく
 
-2.5にしました。
+~~2.5にしました~~ 2.6が入りました
