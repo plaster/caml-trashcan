@@ -3,5 +3,5 @@ cubes.js: cubes.byte
 	js_of_ocaml $<
 cubes.byte: cubes.cmo
 	ocamlfind ocamlc -package lwt,js_of_ocaml -linkpkg -o $@ $<
-cubes.cmo: cubes.ml
+cubes.cmo cubes.cmi: cubes.ml
 	ocamlfind ocamlc -syntax camlp4o -package lwt,js_of_ocaml.syntax -g -c $<
