@@ -1,4 +1,8 @@
-ここまでのあらすじ：[js_of_ocaml あそびはじめたいので opam でいろいろといれてみた](00start.md)。
+# ここまでのあらすじ
+
+[js_of_ocaml あそびはじめたいので opam でいろいろといれてみた](00start.md)。
+
+# opam install js_of_ocaml がコケる
 
 opamいれるまえにaptitudeでjs_of_ocamlいれてたんだけど、この際opamで入れてみることにした。。。
 ら、なんと失敗した！
@@ -311,6 +315,8 @@ Do you want to continue ? [Y/n] n
 
 ほかのパッケージは base64.1.1.0や2.0.0にするとダウングレードしてしまう。もーなんなんだこれ。。。 
 
+# それでもやってみた
+
 まあ変な状態に陥っちゃったとしても .opam 消せばすっきりやり直せそうなので、とりあえずやってみよう。
 
 ```
@@ -430,3 +436,7 @@ Processing  6/6: [js_of_ocaml: ocamlfind remove]
 # make[1]: *** [js_output.cmx] エラー 2
 # make: *** [compiler] エラー 2
 ```
+
+# けっきょく
+
+2.5にしました。
