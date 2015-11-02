@@ -379,7 +379,8 @@ The following actions will be performed:
 
 むりだから！それむりだから！（
 
-```Do you want to continue ? [Y/n] y
+```
+Do you want to continue ? [Y/n] y
 
 =-=- Gathering sources =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 [base64] Archive in cache
