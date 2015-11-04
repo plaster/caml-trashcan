@@ -1,3 +1,10 @@
+.PHONY: clean default
+
+default: hello.js
+
+clean:
+	rm hello.js hello.byte hello.cmo hello.cmi
+
 hello.js: hello.byte
 	js_of_ocaml $<
 hello.byte: hello.cmo
