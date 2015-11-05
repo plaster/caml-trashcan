@@ -54,3 +54,28 @@ make: *** [dom.cmo] エラー 2
 おやまあ。
 
 （つづく。。。のか？）
+
+きたきた。`open Dom_html`らしい。これで `Dom`モジュール内に定義されてるものも使えるようになってる感じ。
+
+```
+[ plaster@ropecat:~/work/caml-trashcan/src/03-02dom ]
+% cat domtest.ml 
+(* http://d.hatena.ne.jp/camlspotter/20111015/1318664763 *)
+
+open Js
+open Dom_html
+
+let _ = Dom.ELEMENT
+
+let _ = Unsafe.eval_string "
+alert('hello, world!');
+"
+```
+
+```
+[ plaster@ropecat:~/work/caml-trashcan/src/03-02dom ]
+% make
+ocamlfind ocamlc -syntax camlp4o -package lwt,js_of_ocaml.syntax -g -c domtest.ml
+ocamlfind ocamlc -package lwt,js_of_ocaml -linkpkg -o domtest.byte domtest.cmo
+js_of_ocaml domtest.byte
+```
