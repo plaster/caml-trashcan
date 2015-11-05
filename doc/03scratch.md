@@ -79,3 +79,5 @@ ocamlfind ocamlc -syntax camlp4o -package lwt,js_of_ocaml.syntax -g -c domtest.m
 ocamlfind ocamlc -package lwt,js_of_ocaml -linkpkg -o domtest.byte domtest.cmo
 js_of_ocaml domtest.byte
 ```
+
+しかしこのまま進もうにも使い方よくわかんないので、もうちょっときゃみばさまの記事を見ながらいじってこう。
