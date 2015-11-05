@@ -1,13 +1,13 @@
 .PHONY: clean default
 
-default: dom.js
+default: domtest.js
 
 clean:
-	rm dom.js dom.byte dom.cmo dom.cmi
+	rm domtest.js domtest.byte domtest.cmo domtest.cmi
 
-dom.js: dom.byte
+domtest.js: domtest.byte
 	js_of_ocaml $<
-dom.byte: dom.cmo
+domtest.byte: domtest.cmo
 	ocamlfind ocamlc -package lwt,js_of_ocaml -linkpkg -o $@ $<
-dom.cmo dom.cmi: dom.ml
+domtest.cmo domtest.cmi: domtest.ml
 	ocamlfind ocamlc -syntax camlp4o -package lwt,js_of_ocaml.syntax -g -c $<
