@@ -87,3 +87,6 @@ tってなんだ？みたいになってるのでとりあえず[このへんな
 型がちょっとむずかしい。なるべくかんたんになるようにつくられてるんだろうなって気はするんだけど、なんのために t をはさみまくるのかとかがあんまりわかってない。
 それは置いといてみようみまねでやりたいとこなんだけど、たとえば
 [`type (-'a, +'b) meth_callback`](http://ocsigen.org/js_of_ocaml/2.6/api/Js#TYPEconstr) の `-` や `+` ってなんだ？ってなる。OCamlの言語への理解がたりない。。。常ひごろOCamlさわってるひとじゃないとうれしくないのでは疑惑。OCamlの入門書どっかで調達してこよう。。。
+
+[ocaml.jp/書籍紹介](http://ocaml.jp/%E6%9B%B8%E7%B1%8D%E7%B4%B9%E4%BB%8B)みてみてる。英語版だけどオンラインで全部よめる「Introduction to Objective Caml」が気になる、ものの、ここから直接は辿れず(リンク先が真っ白な画面でそこから遷移しない）。
+[タイトルでぐぐる](https://www.google.co.jp/search?q=Introduction+to+Objective+Caml)と先頭にPDFがヒットするのでここで。はー、これよめるかなあ。。。（
