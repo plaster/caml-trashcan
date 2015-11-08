@@ -11,7 +11,8 @@
 きになったもの
 
 ```
-if false then ()
+# if false then ();;
+- : unit = ()
 ```
 
 `else`が省略できる。その場合、式の値は利用できない。型がunitになる。
