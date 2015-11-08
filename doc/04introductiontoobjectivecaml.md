@@ -4,6 +4,8 @@
 * わたしOCamlしらないじゃんってことに今更気づき（ISでの演習はどうした！）
 * [教科書になりそうなPDF](https://www.google.co.jp/search?q=Introduction+to+Objective+Caml)ながめることにした
 
+# 読んでみる
+
 最初の方はざーっと読み飛ばす。Exerciseがちゃんとついてるのでそこだけさくさく解いていこう。
 
 ## Exercise 2.1
