@@ -83,3 +83,7 @@ js_of_ocaml domtest.byte
 しかしこのまま進もうにも使い方よくわかんないので、もうちょっときゃみばさまの記事を見ながらいじってこう。
 「Class type で JS のオブジェクトをエンコード」のとこからが急に難易度が上がっている。
 tってなんだ？みたいになってるのでとりあえず[このへんながめる](http://ocsigen.org/js_of_ocaml/2.6/api/Js#2_TypesforspecifyingmethodandpropertiesofJavascriptobjects)など。
+
+型がちょっとむずかしい。なるべくかんたんになるようにつくられてるんだろうなって気はするんだけど、なんのために t をはさみまくるのかとかがあんまりわかってない。
+それは置いといてみようみまねでやりたいとこなんだけど、たとえば
+[type (-'a, +'b) meth_callback](http://ocsigen.org/js_of_ocaml/2.6/api/Js#TYPEconstr) の `-` や `+` ってなんだ？ってなる。OCamlの言語への理解がたりない。。。常ひごろOCamlさわってるひとじゃないとうれしくないのでは疑惑
