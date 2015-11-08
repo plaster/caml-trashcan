@@ -61,3 +61,19 @@ Exception: Invalid_argument "index out of bounds".
 ```
 
 ！！？？？ ナンデ？？？型が明らかにちがうから混同しない、的な？？？
+
+```
+# let rec f x = if x < 1 then 1 else x * f (x - 1) in f 10;;
+- : int = 3628800
+```
+
+```
+# let rec x x = if x < 1 then 1 else x * x (x - 1) in x 10;;
+Characters 39-40:
+  let rec x x = if x < 1 then 1 else x * x (x - 1) in x 10;;
+                                         ^
+Error: This expression has type int
+       This is not a function; it cannot be applied.
+```
+
+なるほどー、引数の束縛でshadowingされて本体関数は見えません、と。
