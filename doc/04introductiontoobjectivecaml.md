@@ -41,3 +41,20 @@ Exception: Invalid_argument "index out of bounds".
 ```
 
 文字列の大小比較がふつうに `<` でできるようだ。
+
+
+## Exercise 3.1
+
+```
+# let x x = x + 1 in x 2;;
+- : int = 3
+```
+
+わかる
+
+```
+# let rec x x = x + x in x 2;;
+- : int = 4
+```
+
+！！？？？ ナンデ？？？型が明らかにちがうから混同しない、的な？？？
