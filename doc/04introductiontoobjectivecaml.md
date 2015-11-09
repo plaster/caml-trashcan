@@ -12,6 +12,7 @@
 
 きになったもの
 
+### 9
 ```
 # if false then ();;
 - : unit = ()
@@ -19,6 +20,7 @@
 
 `else`が省略できる。その場合、式の値は利用できない。型がunitになる。
 
+### 11
 ```
 # true || (1 / 0 >= 0);;
 - : bool = true
@@ -26,6 +28,7 @@
 
 短絡評価。
 
+### 14
 ```
 # "Hello world".[11] <- 's';;
 Characters 0-25:
@@ -38,6 +41,7 @@ Exception: Invalid_argument "index out of bounds".
 
 文字列の途中を破壊的に（？）置き換えるのちょっと心配なのと、deprecatedでてるので教科書ちょっと古そうな予感がする
 
+### 15
 ```
 # String.lowercase "A" < "B";;
 - : bool = false
@@ -48,6 +52,7 @@ Exception: Invalid_argument "index out of bounds".
 
 ## Exercise 3.1
 
+### 9
 ```
 # let x x = x + 1 in x 2;;
 - : int = 3
@@ -55,6 +60,7 @@ Exception: Invalid_argument "index out of bounds".
 
 わかる
 
+### 10
 ```
 # let rec x x = x + x in x 2;;
 - : int = 4
@@ -78,6 +84,7 @@ Error: This expression has type int
 
 なるほどー、引数の束縛でshadowingされて本体関数は見えません、と。
 
+### 15
 ```
 # let (++) x = x + 1 in ++x;
   ^CInterrupted.
