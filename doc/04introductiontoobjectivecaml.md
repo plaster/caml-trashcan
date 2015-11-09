@@ -77,3 +77,10 @@ Error: This expression has type int
 ```
 
 なるほどー、引数の束縛でshadowingされて本体関数は見えません、と。
+
+```
+# let (++) x = x + 1 in ++x;
+  ^CInterrupted.
+```
+
+んー？なんだこれ。xは未束縛じゃないの？
