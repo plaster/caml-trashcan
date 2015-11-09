@@ -90,4 +90,23 @@ Error: This expression has type int
   ^CInterrupted.
 ```
 
-んー？なんだこれ。xは未束縛じゃないの？
+~~んー？なんだこれ。xは未束縛じゃないの？~~
+セミコロンたりんかっただけだった。
+```
+# let (++) x = x + 1 in ++x;;
+Characters 22-24:
+  let (++) x = x + 1 in ++x;;
+                        ^^
+Error: Syntax error
+```
+
+単項演算子にはならないようだ。二項演算子として使うこと自体はできる（ただし型エラー。第二引数を食べようとするけど、第一引数を食べた時点でもう関数じゃなくなっちゃってるので）
+```
+# let (++) x = x + 1 in 1 ++ x;;
+Characters 24-26:
+  let (++) x = x + 1 in 1 ++ x;;
+                          ^^
+Error: This function has type int -> int
+       It is applied to too many arguments; maybe you forgot a `;'.
+```
+しかし相変わらず x が未束縛なとこにはツッコミが入らない。。。（
