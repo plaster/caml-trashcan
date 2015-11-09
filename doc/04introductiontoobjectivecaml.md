@@ -110,3 +110,4 @@ Error: This function has type int -> int
        It is applied to too many arguments; maybe you forgot a `;'.
 ```
 しかし相変わらず x が未束縛なとこにはツッコミが入らない。。。（
+コンパイラのパイプライン的に 字句解析→構文解析→変数解決→型チェック になってるとしたら、手前の構文解析でコケると変数解決までいかないのは納得できる
