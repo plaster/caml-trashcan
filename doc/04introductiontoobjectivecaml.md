@@ -112,3 +112,19 @@ Error: This function has type int -> int
 しかし相変わらず x が未束縛なとこにはツッコミが入らない。。。（
 
 コンパイラのパイプライン的に 字句解析→構文解析→変数解決→型チェック みたくなってると想像してたんだけど、変数解決より型チェックのが先に来る場合がありえるということで、処理系の実装方法についての重要な（？）示唆を与える結果だ。
+
+## Exercise 3.3
+
+さくっと末尾再帰で。
+
+```
+# let sum n m f =
+    let rec loop i a = if i <= m then loop (i + 1) (a + f(i)) else a
+    in loop n 0
+  ;;
+val sum : int -> int -> (int -> int) -> int = <fun>
+# sum 1 10 (fun x -> x);;
+- : int = 55
+# sum 3 4 (fun x -> x * x);;
+- : int = 25
+```
