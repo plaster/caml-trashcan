@@ -128,3 +128,36 @@ val sum : int -> int -> (int -> int) -> int = <fun>
 # sum 3 4 (fun x -> x * x);;
 - : int = 25
 ```
+
+## Exercise 3.4
+
+そのまま書き下す。
+
+```
+# let rec gcd n m =
+  if m = 0
+  then n
+  else if n > m
+       then gcd (n - m) m
+       else gcd n (m - n)
+  ;;
+val gcd : int -> int -> int = <fun>
+# gcd 36 27;;
+- : int = 9
+# gcd 27 36;;
+- : int = 9
+# gcd 1 1;;
+- : int = 1
+# gcd 10 1;;
+- : int = 1
+# gcd 1 10;;
+- : int = 1
+# gcd 100 200;;
+- : int = 100
+# gcd 200 100;;
+- : int = 100
+# gcd 0 0;;
+- : int = 0
+# gcd 128 192;;
+- : int = 64
+```
