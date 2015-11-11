@@ -187,3 +187,16 @@ val search : (int -> int) -> int -> int = <fun>
 # search (fun x -> x * x - 300) 10;;
 Exception: Failure "no positive value".
 ```
+
+## Exercise 3.6
+
+### 1
+
+```
+# let empty _ = 0;;
+val empty : 'a -> int = <fun>
+# let add dict k v = fun k' -> if k = k' then v else dict k';;
+val add : ('a -> 'b) -> 'a -> 'b -> 'a -> 'b = <fun>
+# let find dict k = dict k;;
+val find : ('a -> 'b) -> 'a -> 'b = <fun>
+```
