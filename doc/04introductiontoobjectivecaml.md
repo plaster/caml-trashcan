@@ -161,3 +161,29 @@ val gcd : int -> int -> int = <fun>
 # gcd 128 192;;
 - : int = 64
 ```
+
+## Exercise 3.5
+
+二分探索とかしたほうがいいのかな、と思いつつもやる気出ないので、さくっと片付ける。
+ついでに例外とかつかってみる。f 0 < 0 もチェックしたほうがよかっただろうか。。。？
+
+```
+# let search f n =
+    let rec loop i =
+      if i < n
+      then if f i >= 0
+           then i
+           else loop (i + 1)
+      else raise (Failure "no positive value")
+    in loop 0
+  ;;
+val search : (int -> int) -> int -> int = <fun>
+# search (fun x -> x - 5) 20;;
+- : int = 5
+# search (fun x -> x * x - 49) 10;;
+- : int = 7
+# search (fun x -> x * x - 50) 10;;
+- : int = 8
+# search (fun x -> x * x - 300) 10;;
+Exception: Failure "no positive value".
+```
