@@ -213,3 +213,12 @@ val find : ('a -> 'b) -> 'a -> 'b = <fun>
 \frac{\frac{-b}{2} + \sqrt{\frac{b^2}{4} - ac}}{a}
 ```
 せいぜいこのくらい？
+
+```
+# let r' c b =
+    let nbhalf = -. b /. 2.0
+    and sqbhalf = (b *. b) /. 4.0
+    in fun a -> (nbhalf +. sqrt (sqbhalf -. c *. a)) /. a
+  ;;
+val r' : float -> float -> float -> float = <fun>
+```
