@@ -222,3 +222,18 @@ val find : ('a -> 'b) -> 'a -> 'b = <fun>
   ;;
 val r' : float -> float -> float -> float = <fun>
 ```
+
+## Exercise 3.8
+
+3.7はよくわかんなかったけど3.8はちょっとかっこよさそうなのできをとりなおして。
+
+### 1
+
+```
+# let (+:) s c = fun i -> c + s i;;
+val ( +: ) : ('a -> int) -> int -> 'a -> int = <fun>
+# let (-|) sx sy = fun i -> (sx i) - (sy i);;
+val ( -| ) : ('a -> int) -> ('a -> int) -> 'a -> int = <fun>
+# let map f s = fun i -> f ( s i);;
+val map : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b = <fun>
+```
