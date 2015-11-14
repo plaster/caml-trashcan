@@ -237,3 +237,27 @@ val ( -| ) : ('a -> int) -> ('a -> int) -> 'a -> int = <fun>
 # let map f s = fun i -> f ( s i);;
 val map : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b = <fun>
 ```
+
+### 2
+
+とりあえず足りない関数いくつか書き足す
+
+```ocaml
+# let hd s = s 0;;
+val hd : (int -> 'a) -> 'a = <fun>
+# let tl s i = s (i + 1);;
+val tl : (int -> 'a) -> int -> 'a = <fun>
+# let derivative s = tl s -| s;;
+val derivative : (int -> int) -> int -> int = <fun>
+```
+
+そんでもって動くかみてみる
+
+```ocaml
+# let evens i = i * 2;;
+val evens : int -> int = <fun>
+# [evens 0;evens 1;evens 2;evens 3];;
+- : int list = [0; 2; 4; 6]
+# let de = derivative evens in [ de 0; de 1; de 2; de 3 ];;
+- : int list = [2; 2; 2; 2]
+```
