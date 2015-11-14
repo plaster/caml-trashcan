@@ -13,7 +13,7 @@
 きになったもの
 
 ### 9
-```
+```ocaml
 # if false then ();;
 - : unit = ()
 ```
@@ -21,7 +21,7 @@
 `else`が省略できる。その場合、式の値は利用できない。型がunitになる。
 
 ### 11
-```
+```ocaml
 # true || (1 / 0 >= 0);;
 - : bool = true
 ```
@@ -29,7 +29,7 @@
 短絡評価。
 
 ### 14
-```
+```ocaml
 # "Hello world".[11] <- 's';;
 Characters 0-25:
   "Hello world".[11] <- 's';;
@@ -42,7 +42,7 @@ Exception: Invalid_argument "index out of bounds".
 文字列の途中を破壊的に（？）置き換えるのちょっと心配なのと、deprecatedでてるので教科書ちょっと古そうな予感がする
 
 ### 15
-```
+```ocaml
 # String.lowercase "A" < "B";;
 - : bool = false
 ```
@@ -53,7 +53,7 @@ Exception: Invalid_argument "index out of bounds".
 ## Exercise 3.1
 
 ### 9
-```
+```ocaml
 # let x x = x + 1 in x 2;;
 - : int = 3
 ```
@@ -61,19 +61,19 @@ Exception: Invalid_argument "index out of bounds".
 わかる
 
 ### 10
-```
+```ocaml
 # let rec x x = x + x in x 2;;
 - : int = 4
 ```
 
 ！！？？？ ナンデ？？？型が明らかにちがうから混同しない、的な？？？
 
-```
+```ocaml
 # let rec f x = if x < 1 then 1 else x * f (x - 1) in f 10;;
 - : int = 3628800
 ```
 
-```
+```ocaml
 # let rec x x = if x < 1 then 1 else x * x (x - 1) in x 10;;
 Characters 39-40:
   let rec x x = if x < 1 then 1 else x * x (x - 1) in x 10;;
@@ -85,14 +85,14 @@ Error: This expression has type int
 なるほどー、引数の束縛でshadowingされて本体関数は見えません、と。
 
 ### 15
-```
+```ocaml
 # let (++) x = x + 1 in ++x;
   ^CInterrupted.
 ```
 
 ~~んー？なんだこれ。xは未束縛じゃないの？~~
 セミコロンたりんかっただけだった。
-```
+```ocaml
 # let (++) x = x + 1 in ++x;;
 Characters 22-24:
   let (++) x = x + 1 in ++x;;
@@ -101,7 +101,7 @@ Error: Syntax error
 ```
 
 単項演算子にはならないようだ。二項演算子として使うこと自体はできる（ただし型エラー。第二引数を食べようとするけど、第一引数を食べた時点でもう関数じゃなくなっちゃってるので）
-```
+```ocaml
 # let (++) x = x + 1 in 1 ++ x;;
 Characters 24-26:
   let (++) x = x + 1 in 1 ++ x;;
@@ -117,7 +117,7 @@ Error: This function has type int -> int
 
 さくっと末尾再帰で。
 
-```
+```ocaml
 # let sum n m f =
     let rec loop i a = if i <= m then loop (i + 1) (a + f(i)) else a
     in loop n 0
@@ -133,7 +133,7 @@ val sum : int -> int -> (int -> int) -> int = <fun>
 
 そのまま書き下す。
 
-```
+```ocaml
 # let rec gcd n m =
   if m = 0
   then n
@@ -167,7 +167,7 @@ val gcd : int -> int -> int = <fun>
 二分探索とかしたほうがいいのかな、と思いつつもやる気出ないので、さくっと片付ける。
 ついでに例外とかつかってみる。f 0 < 0 もチェックしたほうがよかっただろうか。。。？
 
-```
+```ocaml
 # let search f n =
     let rec loop i =
       if i < n
@@ -192,7 +192,7 @@ Exception: Failure "no positive value".
 
 ### 1
 
-```
+```ocaml
 # let empty _ = 0;;
 val empty : 'a -> int = <fun>
 # let add dict k v = fun k' -> if k = k' then v else dict k';;
@@ -214,7 +214,7 @@ val find : ('a -> 'b) -> 'a -> 'b = <fun>
 ```
 せいぜいこのくらい？
 
-```
+```ocaml
 # let r' c b =
     let nbhalf = -. b /. 2.0
     and sqbhalf = (b *. b) /. 4.0
@@ -229,7 +229,7 @@ val r' : float -> float -> float -> float = <fun>
 
 ### 1
 
-```
+```ocaml
 # let (+:) s c = fun i -> c + s i;;
 val ( +: ) : ('a -> int) -> int -> 'a -> int = <fun>
 # let (-|) sx sy = fun i -> (sx i) - (sy i);;
