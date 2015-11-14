@@ -260,4 +260,41 @@ val evens : int -> int = <fun>
 - : int list = [0; 2; 4; 6]
 # let de = derivative evens in [ de 0; de 1; de 2; de 3 ];;
 - : int list = [2; 2; 2; 2]
+# [ sqs 0; sqs 1; sqs 2; sqs 3; sqs 4];;
+- : int list = [0; 1; 4; 9; 16]
+# let ds = derivative sqs in [ ds 0; ds 1; ds 2; ds 3 ];;
+- : int list = [1; 3; 5; 7]
 ```
+
+integral 書いてみる
+
+```ocaml
+# let rec integral s i = s i + if i = 0 then 0 else s (i-1);;
+val integral : (int -> int) -> int -> int = <fun>
+```
+
+うごくかな？？
+
+```ocaml
+# let evens' = integral (derivative evens);;
+val evens' : int -> int = <fun>
+# [evens' 0;evens' 1;evens' 2;evens' 3];;
+- : int list = [2; 4; 4; 4]
+```
+
+あちゃ。どこまちがったかな。。。って `integral` の `s (i-1)` は integralよばなきゃ。再帰になってないorz
+
+```ocaml
+# let integral s = let rec loop i = s i + if i = 0 then 0 else loop (i-1) in loop;;
+val integral : (int -> int) -> int -> int = <fun>
+# let evens' = integral (derivative evens);;
+val evens' : int -> int = <fun>
+# [evens' 0;evens' 1;evens' 2;evens' 3];;
+- : int list = [2; 4; 6; 8]
+# let sqs' = integral (derivative sqs);;  
+val sqs' : int -> int = <fun>
+# [ sqs' 0; sqs' 1; sqs' 2; sqs' 3; sqs' 4 ];;
+- : int list = [1; 4; 9; 16; 25]
+```
+
+でき、た。。。？ いや、off-by-one やらかしてる。
