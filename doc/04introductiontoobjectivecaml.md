@@ -298,3 +298,36 @@ val sqs' : int -> int = <fun>
 ```
 
 でき、た。。。？ いや、off-by-one やらかしてる。
+
+```ocaml
+# let integral s = let rec loop i = if i = 0 then 0 else s i-1 + loop (i-1) in loop;;
+val integral : (int -> int) -> int -> int = <fun>
+# let sqs' = integral (derivative sqs);;
+val sqs' : int -> int = <fun>
+# [ sqs' 0; sqs' 1; sqs' 2; sqs' 3; sqs' 4 ];;
+- : int list = [0; 2; 6; 12; 20]
+```
+
+んー？なんかへん？？結合？
+
+```ocaml
+# let integral s = let rec loop i = if i = 0 then 0 else (s i-1) + loop (i-1) in loop;;
+val integral : (int -> int) -> int -> int = <fun>
+# let sqs' = integral (derivative sqs);; 
+val sqs' : int -> int = <fun>
+# [ sqs' 0; sqs' 1; sqs' 2; sqs' 3; sqs' 4 ];;
+- : int list = [0; 2; 6; 12; 20]
+```
+
+カワンネ。。。あっ
+
+```ocaml
+# let integral s = let rec loop i = if i = 0 then 0 else s (i-1) + loop (i-1) in loop;;
+val integral : (int -> int) -> int -> int = <fun>
+# let sqs' = integral (derivative sqs);;
+val sqs' : int -> int = <fun>
+# [ sqs' 0; sqs' 1; sqs' 2; sqs' 3; sqs' 4 ];;
+- : int list = [0; 1; 4; 9; 16]
+```
+
+二項演算はかなり結合がよわい。
