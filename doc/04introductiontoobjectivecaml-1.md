@@ -366,3 +366,11 @@ Here is an example of a value that is not matched:
 ```
 
 ここにはカッコが必要です、と。複数の引数に対してそれぞれパターンを書くかもだから、かな？
+
+## Exercise 4.2
+
+> Why do you think the OCaml designers left out function matching?
+
+https://twitter.com/plaster/status/665727852923322369 こういうことを考えてた直後だっただけに。
+関数の同一性、たしか「完全に等価」は判定不能だから、だと思う。
+むりやりやろうとするとあまり意味のない同一性になってしまう。
