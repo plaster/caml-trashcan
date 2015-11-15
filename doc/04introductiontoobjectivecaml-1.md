@@ -371,6 +371,9 @@ Here is an example of a value that is not matched:
 
 > Why do you think the OCaml designers left out function matching?
 
-https://twitter.com/plaster/status/665727852923322369 こういうことを考えてた直後だっただけに。
+> パターンマッチの記法で条件分と本体の区切りに「-&gt;」を使うの、「渡された関数を引数と本体でバラしてマッチさせるようなのはありえない」のをうまく使ってる感がある
+> &mdash; たこさんズ（かい） (@plaster) [2015, 11月 15](https://twitter.com/plaster/status/665727852923322369)
+
+こういうことを考えてた直後だっただけに。
 関数の同一性、たしか「完全に等価」は判定不能だから、だと思う。
 むりやりやろうとするとあまり意味のない同一性になってしまう。
