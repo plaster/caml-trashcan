@@ -335,3 +335,34 @@ val sqs' : int -> int = <fun>
 ## 4章
 
 パターンマッチに一章割かれてる。使い慣れておきたい感。
+
+## Exercise 4.1
+
+### 3
+
+```ocaml
+- : string = "abcdef"
+# let _ as s = "abc" in s ^ "def";;
+- : string = "abcdef"
+```
+letはパターンがそのまま書ける
+
+### 4
+
+```ocaml
+# (fun (1 | 2) as i -> i + 1) 2;;
+Characters 13-15:
+  (fun (1 | 2) as i -> i + 1) 2;;
+               ^^
+Error: Syntax error: operator expected.
+# (fun ((1 | 2) as i) -> i + 1) 2;;
+Characters 0-29:
+  (fun ((1 | 2) as i) -> i + 1) 2;;
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 8: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+0
+- : int = 3
+```
+
+ここにはカッコが必要です、と。複数の引数に対してそれぞれパターンを書くかもだから、かな？
