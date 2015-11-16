@@ -456,3 +456,32 @@ val stringmap : (char -> char) -> bytes -> bytes = <fun>
 # stringmap ( lookup "ABCD" "CADB" ) "BAD";;
 - : bytes = "ACB"
 ```
+
+さて部品がそろった。
+
+```ocaml
+# let gencheck encrypt plaintext cyphertext = cyphertext = encrypt plaintext;;
+val gencheck : ('a -> 'b) -> 'a -> 'b -> bool = <fun>
+```
+
+あとは定数たべさせるだけ
+
+```ocaml
+# let check = gencheck (stringmap (lookup "ABCD" "CADB"));;
+val check : bytes -> bytes -> bool = <fun>
+```
+
+うごいてる。いいかんじ。
+
+```ocaml
+# check "BAD" "ACB";;
+- : bool = true
+# check "BOO" "ACB";;
+Exception: Invalid_argument "index".
+# check "BAD" "A";;
+- : bool = false
+# check "CAD" "DCB";;
+- : bool = true
+# check "CAD" "BAD";;
+- : bool = false
+```
