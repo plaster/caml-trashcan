@@ -485,3 +485,5 @@ Exception: Invalid_argument "index".
 # check "CAD" "BAD";;
 - : bool = false
 ```
+
+換字表がおっきくなっても引数かえるだけ。
