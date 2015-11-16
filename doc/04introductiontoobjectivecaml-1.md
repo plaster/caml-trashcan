@@ -378,3 +378,63 @@ Here is an example of a value that is not matched:
 
 関数の同一性、たしか「完全に等価」は判定不能だから、だと思う。
 むりやりやろうとするとあまり意味のない同一性になってしまう。
+
+## Exercise 4.3
+
+部品づくりからやることにする。
+
+```ocaml
+# let index s c = let rec loop i = if i = String.length s then raise (Invalid_argument "index") else if c = s.[i] then i else loop (i + 1) in loop 0;;
+val index : string -> char -> int = <fun>
+# index "ABC" 'B';;
+- : int = 1
+# index "ABC" 'C';;
+- : int = 2
+# index "ABC" 'X';;
+Exception: Invalid_argument "index".
+```
+
+```ocaml
+# let lookup table1 table2 c = table2.[index table1 c];;
+val lookup : string -> string -> char -> char = <fun>
+# lookup "ABCD" "CADB" 'B';;
+- : char = 'A'
+# lookup "ABCD" "CADB" 'A';;
+- : char = 'C'
+# lookup "ABCD" "CADB" 'D';;
+- : char = 'B'
+```
+
+文字列のmapがほしいので
+
+```ocaml
+# let stringmap charmap s =
+    let result = String.create (String.length s) in
+    let rec loop i =
+      if i = String.length s
+      then result
+      else (                                         
+        result.[i] <- charmap s.[i];
+        loop (i+1)
+      ) in
+    loop 0
+  ;;
+Characters 41-54:
+    let result = String.create (String.length s) in
+                 ^^^^^^^^^^^^^
+Warning 3: deprecated: String.create
+Use Bytes.create instead.
+Characters 155-182:
+        result.[i] <- charmap s.[i];
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Warning 3: deprecated: String.set
+Use Bytes.set instead.
+val stringmap : (char -> char) -> string -> bytes = <fun>
+```
+
+```ocaml
+# stringmap ( lookup "ABCD" "CADB" ) "BAD";;
+- : bytes = "ACB"
+```
+
+相変わらず警告されまくりだけどとりあえずうごいた。
