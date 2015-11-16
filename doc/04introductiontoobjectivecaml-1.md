@@ -438,3 +438,21 @@ val stringmap : (char -> char) -> string -> bytes = <fun>
 ```
 
 相変わらず警告されまくりだけどとりあえずうごいた。
+警告にしたがって直してみる。bytesとstringは同一視していいみたい。（マルチバイト文字どうなるんだ。。。？）
+
+```ocaml
+# let stringmap charmap s =
+    let result = Bytes.create (Bytes.length s) in
+    let rec loop i =
+      if i = Bytes.length s
+      then result
+      else (
+        Bytes.set result i (charmap s.[i]);
+        loop (i+1)
+      ) in
+    loop 0
+  ;;
+val stringmap : (char -> char) -> bytes -> bytes = <fun>
+# stringmap ( lookup "ABCD" "CADB" ) "BAD";;
+- : bytes = "ACB"
+```
