@@ -1,4 +1,4 @@
-[前へ](05introductiontoobjectivecaml-2.md)
+[前へ](04introductiontoobjectivecaml-1.md)
 
 # あらすじ
 
