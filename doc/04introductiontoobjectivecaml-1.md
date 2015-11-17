@@ -487,3 +487,7 @@ Exception: Invalid_argument "index".
 ```
 
 換字表がおっきくなっても引数かえるだけ。
+
+長くなってきたのでそろそろページきりかえる。
+
+[次へ](05introductiontoobjectivecaml-2.md)
