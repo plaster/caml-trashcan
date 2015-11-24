@@ -55,4 +55,29 @@ Value restrictionについてのすんごいシンプルな説明があった。
   2. プログラムを理解する難易度が上がるから。
 * 一方で、subtype polymorphismやdynamic method dispatch はフルでサポートしてる。 
 
+
+## 5.2 Tuples
+
+「the ordered tuples you have seen in mathmatics」は「順序対」を3個以上に拡張した感じかな？
+DB項目の定義に使うのは"awkward"、record type使うべし。
+
+ちょっとつかってみる。
+
+```ocaml
+# let div_and_mod n d = n / d, n mod d;;
+val div_and_mod : int -> int -> int * int = <fun>
+# div_and_mod 50 7;;
+- : int * int = (7, 1)
+# div_and_mod 50 11;;
+- : int * int = (4, 6)
+# div_and_mod 100 0;;
+Exception: Division_by_zero.
+```
+
+letで受け取って多値返しにふつうに使える感じ。
+```ocaml
+# let n, d = div_and_mod 50 13 in n, d, n+d, n-d, n*d, n/d;;
+- : int * int * int * int * int * int = (3, 11, 14, -8, 33, 0)
+```
+
 <!-- vi: se ft=markdown : -->
