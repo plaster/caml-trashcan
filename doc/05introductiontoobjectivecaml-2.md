@@ -130,5 +130,6 @@ val inorder : 'a list -> bool = <fun>
 ```
 
 Haskellでいう Ord が最初から入ってる、のかな？
+でも自分で定義した型とかだとどうなるんだろ？ record typeがでてきたら要チェックかな。
 
 <!-- vi: se ft=markdown : -->
