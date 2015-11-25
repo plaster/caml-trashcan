@@ -80,4 +80,55 @@ letで受け取って多値返しにふつうに使える感じ。
 - : int * int * int * int * int * int = (3, 11, 14, -8, 33, 0)
 ```
 
+
+## 5.3 Lists
+
+例のこれ
+
+```ocaml
+# let rec mem x l =
+    match l with
+      [] -> false
+    | y :: l -> x = y || mem x l;;
+val mem : 'a -> 'a list -> bool = <fun>
+```
+
+「`=`」をつかってるんだけど、型パラメータ的には「`'a`」なので、`=`がいつどんなとき使えるのみたいなのがすごい気になっている。
+「`<`」もね。書いてみよう。
+
+```ocaml
+# let rec inorder xs =
+  match xs with
+    [] -> true
+  | _ :: [] -> true
+  | x :: ((x' :: _) as xs) -> x < x' && inorder xs;;
+val inorder : 'a list -> bool = <fun>
+# inorder [ 0; 1; 2 ];;
+- : bool = true
+# inorder [];;
+- : bool = true
+# inorder [ 1 ];;
+- : bool = true
+# inorder [ 0; 1; 1; 2 ];;
+- : bool = false
+# inorder [ 0; 1; 2 ];;
+- : bool = true
+# inorder [];;
+- : bool = true
+# inorder [ 1 ];;
+- : bool = true
+# inorder [ 0; 1; 1; 2 ];;
+- : bool = false
+# inorder [ [ 1; 2]; [ 1; 2 ] ];;
+- : bool = false
+# inorder [ [ 1; 2]; [ 1; 2; 3 ] ];;
+- : bool = true
+# inorder [ []; [ []; [] ]; [ []; [] ] ];;
+- : bool = false
+# inorder [ []; [ []; [] ]; [ []; [ [] ] ] ];;
+- : bool = true
+```
+
+Haskellでいう Ord が最初から入ってる、のかな？
+
 <!-- vi: se ft=markdown : -->
