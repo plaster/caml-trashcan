@@ -222,6 +222,16 @@ Exception: Invalid_argument "=".
 ```
 
 期待どおり！
+無限ループして帰ってこないやつでも同じことできそう。
+
+```ocaml
+# let rec f x = if x = x then f x else x;;
+val f : 'a -> 'a = <fun>
+# f nan;;
+- : float = nan
+# f 10;;
+^CInterrupted.
+```
 
 ### 5.6
 
