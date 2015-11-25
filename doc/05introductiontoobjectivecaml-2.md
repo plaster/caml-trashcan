@@ -196,4 +196,35 @@ Error: This expression has type 'a * 'b * 'c
 - : int * int = (2, 3)
 ```
 
+### 5.5
+
+かんがえる。
+例外とかつかって抜けちゃえばいいかも？あ、でもそれだと型が `'a -> 'b` になっちゃうか
+```ocaml
+# let f x = raise (Invalid_argument "hoge");;
+val f : 'a -> 'b = <fun>
+```
+うむ。じゃあ、ifとかで通らない方にすれば。。。？
+```ocaml
+# let f x = if x = x then raise (Invalid_argument "=") else x;;
+val f : 'a -> 'a = <fun>
+```
+型は合った。適用してみる。
+```ocaml
+# f 10;;
+Exception: Invalid_argument "=".
+# f "xxx";;
+Exception: Invalid_argument "=".
+# f 1.0;;
+Exception: Invalid_argument "=".
+# f nan;;
+- : float = nan
+```
+
+期待どおり！
+
+### 5.6
+
+
+
 <!-- vi: se ft=markdown : -->
