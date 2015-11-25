@@ -160,4 +160,40 @@ val select :
 ```
 
 たぶんおっけー。
+
+ところで今更だけど、ぜんぶ違うんね。
+
+```ocaml
+# (2, 3, 4);;
+- : int * int * int = (2, 3, 4)
+# (2, (3, 4));;
+- : int * (int * int) = (2, (3, 4))
+# ((2, 3), 4);;
+- : (int * int) * int = ((2, 3), 4)
+```
+
+`fst` なんかは `'a * 'b` しかとれないから
+
+```ocaml
+# fst;;
+- : 'a * 'b -> 'a = <fun>
+# snd;;
+- : 'a * 'b -> 'b = <fun>
+```
+
+使うのもこんな感じになる
+
+```ocaml
+# fst (2, 3, 4);;
+Characters 4-13:
+  fst (2, 3, 4);;
+      ^^^^^^^^^
+Error: This expression has type 'a * 'b * 'c
+       but an expression was expected of type 'd * 'e
+# fst (2, (3, 4));;
+- : int = 2
+# fst ((2, 3), 4);;
+- : int * int = (2, 3)
+```
+
 <!-- vi: se ft=markdown : -->
