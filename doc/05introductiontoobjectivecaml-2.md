@@ -136,4 +136,28 @@ Haskellでいう Ord が最初から入ってる、のかな？
 
 だいじだよね
 
+## 5.5 Exercise
+
+### 5.4
+
+```ocaml
+# let select' db p =
+    let rec loop acc db = match db with [] -> acc | e :: db -> loop (if p e then e :: acc else acc) db in
+    let rec rev acc ls = match ls with [] -> acc | e :: ls -> loop (e :: acc) ls in
+    rev [] ( loop [] db )
+  ;;
+val select' : 'a list -> ('a -> bool) -> 'a list = <fun>
+# let select = select' db;;
+val select :
+  (string * string * float -> bool) -> (string * string * float) list = <fun>
+```
+
+ざっくりと。
+
+```ocaml
+- : (string * string * float) list =
+[("John", "x3456", 50.1); ("Jaan", "unlisted", 12.7)]
+```
+
+たぶんおっけー。
 <!-- vi: se ft=markdown : -->
