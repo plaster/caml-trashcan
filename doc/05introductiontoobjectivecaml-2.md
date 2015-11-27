@@ -235,6 +235,14 @@ val f : 'a -> 'a = <fun>
 
 ### 5.6
 
+value restriction に引っかかって単相型になってるだけ。なのでfunで包んでみる、が。。。
+
+```ocaml
+# let f x = let x' = g x in fun y -> h x' y;;
+val f : int -> 'a -> 'a = <fun>
+# let f' = f 0;;
+val f' : '_a -> '_a = <fun>
+```
 
 
 <!-- vi: se ft=markdown : -->
