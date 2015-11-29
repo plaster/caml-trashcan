@@ -271,5 +271,26 @@ val append : 'a list -> 'a list -> 'a list = <fun>
 
 `welfare crook`なる用語が出現。「生活保護の不正受給者」ってとこかな？
 
+3つのリストに共通の要素を取り出す。どれもソートされてる。
+頭の体操したいので、O(Σリスト長) の実装にしよう。
+仕込みでdrop_whileをつくる。
+
+```ocaml
+# let drop_while p xs =
+    let rec loop xs = match xs with
+      [] -> []
+    | (x' :: xs') -> if p x'
+                     then loop xs'
+                     else xs
+  in loop xs
+  ;;
+val drop_while : ('a -> bool) -> 'a list -> 'a list = <fun>
+```
+
+あと必要な部品は、「リストのリストを受け取って、それぞれの先頭要素がすべて存在して等しいなら返す」、かな。Option使うか。
+
+```ocaml
+```
+
 
 <!-- vi: se ft=markdown : -->
