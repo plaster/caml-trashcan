@@ -244,5 +244,32 @@ val f : int -> 'a -> 'a = <fun>
 val f' : '_a -> '_a = <fun>
 ```
 
+だめだこれ。すぐにはわかんない。letがキモだったきもするんだけど、「g xを二度計算しない」との両立を達成する方法がわかんない。。。
+
+### 5.7
+
+rev_append を定義して、revして渡す、がお約束。
+
+あ、末尾再帰版のrevはrev_appendといっしょだ。
+
+```ocaml
+# let append xs ys =
+    let rec rev_append xs a = match xs with [] -> a | (x :: xs) -> rev_append xs (x :: a) in
+    rev_append (rev_append xs []) ys
+  ;;
+val append : 'a list -> 'a list -> 'a list = <fun>
+```
+
+```ocaml
+# append [1; 2; 3] [4; 5; 6];;
+- : int list = [1; 2; 3; 4; 5; 6]
+```
+
+おｋ
+
+### 5.8
+
+`welfare crook`なる用語が出現。「生活保護の不正受給者」ってとこかな？
+
 
 <!-- vi: se ft=markdown : -->
