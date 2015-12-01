@@ -17,4 +17,9 @@ let intersect xs ys =
             if x = z
             then loop xs zs (x :: acc)
             else loop xs ys acc
-    in loop xs ys []
+    in
+    let rec rev xs acc = match xs with
+        [] -> acc
+    |   ( x :: xs ) -> rev xs ( x :: acc )
+    in
+        rev (loop xs ys []) []
