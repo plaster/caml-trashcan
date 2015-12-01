@@ -287,10 +287,48 @@ val append : 'a list -> 'a list -> 'a list = <fun>
 val drop_while : ('a -> bool) -> 'a list -> 'a list = <fun>
 ```
 
-あと必要な部品は、「リストのリストを受け取って、それぞれの先頭要素がすべて存在して等しいなら返す」、かな。Option使うか。
+~~あと必要な部品は、「リストのリストを受け取って、それぞれの先頭要素がすべて存在して等しいなら返す」、かな。Option使うか。~~
+「2本のリストを受け取って共通部分返す」で十分だった。これを畳み込むなりすればn本に対しても動くし、オーダもかわらない。
+あと、そろそろインタプリタだけで打ち込むのやめた。
 
 ```ocaml
+% cat walfarecrook.ml 
+let drop_while p xs =
+    let rec loop xs = match xs with
+        []          -> []
+    |   (x' :: xs') ->
+        if p x'
+        then loop xs'
+        else xs
+    in loop xs
+
+let intersect xs ys =
+    let rec loop xs ys acc = match xs with
+        []          -> acc
+    |   ( x :: xs ) ->
+        match drop_while ( fun y -> y < x ) ys with
+            []                  -> acc
+        |   ( z :: zs ) as ys ->
+            if x = z
+            then loop xs zs (x :: acc)
+            else loop xs ys acc
+    in
+    let rec rev xs acc = match xs with
+        [] -> acc
+    |   ( x :: xs ) -> rev xs ( x :: acc )
+    in
+        rev (loop xs ys []) []
+
+let walfarecrook xs ys zs =
+    intersect (intersect xs ys) zs
 ```
 
+```ocaml
+% ocaml -init walfarecrook.ml
+        OCaml version 4.02.3
+
+# walfarecrook [ "AAA"; "BBB"; "CCC" ] [ "ABB"; "BBB"; "CCA"; "CCC"] ["BBB"; "CCX"];;
+- : string list = ["BBB"]
+```
 
 <!-- vi: se ft=markdown : -->
