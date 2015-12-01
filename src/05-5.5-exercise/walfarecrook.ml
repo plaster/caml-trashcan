@@ -23,3 +23,6 @@ let intersect xs ys =
     |   ( x :: xs ) -> rev xs ( x :: acc )
     in
         rev (loop xs ys []) []
+
+let walfarecrook xs ys zs =
+    intersect (intersect xs ys) zs
