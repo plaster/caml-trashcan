@@ -351,4 +351,48 @@ balance関数がなんとかしたいのは「a Red node has a Red child」の�
 
 ああ、黒でだいじょうぶなのか？じゃなくて、「黒でだいじょうぶなように作ってる」んだわ、これたぶん。
 
+## 6.5 Open union types
+
+難しくなってきた。「最低限これらのコンストラクタを持つ型」を扱う話。
+
+```ocaml
+# 'Real 1.0;;
+Characters 0-1:
+  'Real 1.0;;
+  ^
+Error: Syntax error
+```
+
+???
+あ、<code>'</code>じゃなくて<code>`</code>か。
+
+```ocaml
+# `Real 1.0;;
+- : [> `Real of float ] = `Real 1.
+```
+
+で、こういう型にtypeで名前をつけようとすると（つけられるんだ！）、型引数を明示しなきゃいけないらしい。理由はまだ理解できてない。
+
+```ocaml
+# type num1 = [> `Integer of int ];;
+Characters 0-32:
+  type num1 = [> `Integer of int ];;
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error: A type variable is unbound in this type declaration.
+In type [> `Integer of int ] as 'a the variable 'a is unbound
+# type 'a num1 = [> `Integer of int ];;
+Characters 0-35:
+  type 'a num1 = [> `Integer of int ];;
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error: A type variable is unbound in this type declaration.
+In type [> `Integer of int ] as 'a the variable 'a is unbound
+```
+
+```ocaml
+# type 'a num1 = [> `Integer of int ] as 'a;;
+type 'a num1 = 'a constraint 'a = [> `Integer of int ]
+```
+
+うーん。。。？？？
+
 <!-- vi: se ft=markdown : -->
