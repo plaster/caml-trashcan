@@ -395,4 +395,7 @@ type 'a num1 = 'a constraint 'a = [> `Integer of int ]
 
 うーん。。。？？？
 
+あと ```[> ... ]``` だけじゃなくて ```[< ... ]``` もあったよなー
+
+
 <!-- vi: se ft=markdown : -->
