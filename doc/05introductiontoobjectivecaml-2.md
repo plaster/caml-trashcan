@@ -395,7 +395,7 @@ type 'a num1 = 'a constraint 'a = [> `Integer of int ]
 
 うーん。。。？？？
 
-あと ```[> ... ]``` だけじゃなくて ```[< ... ]``` もあったよなー
+あと ```[> ... ]``` だけじゃなくて ```[< ... ]``` もあったよなー。これは「 *closed* union type」らしい。
 
 
 <!-- vi: se ft=markdown : -->
