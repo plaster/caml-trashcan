@@ -400,4 +400,7 @@ type 'a num1 = 'a constraint 'a = [> `Integer of int ]
 
 型引数の謎がとけてないけど説明おわってExerciseにきてしまった。。。
 
+
+## 6.7 Exercise
+
 <!-- vi: se ft=markdown : -->
