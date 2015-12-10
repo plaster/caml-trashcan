@@ -403,4 +403,22 @@ type 'a num1 = 'a constraint 'a = [> `Integer of int ]
 
 ## 6.7 Exercise
 
+### 6.1
+
+```ocaml
+# type 'a mylist = Nil | Cons of 'a * 'a mylist ;;
+type 'a mylist = Nil | Cons of 'a * 'a mylist
+# let rec rev a xs = match xs with Nil -> a | Cons(x, xs) -> rev (Cons(x, a)) xs;;
+val rev : 'a mylist -> 'a mylist -> 'a mylist = <fun>
+# let map f xs = let rec loop a xs = match xs with Nil -> rev Nil a | Cons(x, xs) -> loop (Cons(f x, a)) xs in loop Nil xs;;
+val map : ('a -> 'b) -> 'a mylist -> 'b mylist = <fun>
+```
+
+```ocaml
+# map (fun x -> x * x) (Cons(1, (Cons(2, (Cons(3, (Cons(4, Nil))))))));;
+- : int mylist = Cons (1, Cons (4, Cons (9, Cons (16, Nil))))
+```
+
+Consの前にもうしろにもカッコ要るのしんどい。。。
+
 <!-- vi: se ft=markdown : -->
