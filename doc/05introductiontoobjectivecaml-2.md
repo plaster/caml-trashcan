@@ -421,4 +421,21 @@ val map : ('a -> 'b) -> 'a mylist -> 'b mylist = <fun>
 
 Consの前にもうしろにもカッコ要るのしんどい。。。
 
+```ocaml
+# let append xs ys = rev ys (rev Nil xs);;
+val append : 'a mylist -> 'a mylist -> 'a mylist = <fun>
+```
+
+```ocaml
+# let ls = (Cons(1, (Cons(2, (Cons(3, (Cons(4, Nil))))))));;                   
+val ls : int mylist = Cons (1, Cons (2, Cons (3, Cons (4, Nil))))
+# let ls2 = map (fun x -> x + 10) ls;;
+val ls2 : int mylist = Cons (11, Cons (12, Cons (13, Cons (14, Nil))))
+# append ls ls2;;
+- : int mylist =
+Cons (1,
+ Cons (2,
+  Cons (3, Cons (4, Cons (11, Cons (12, Cons (13, Cons (14, Nil))))))))
+```
+
 <!-- vi: se ft=markdown : -->
