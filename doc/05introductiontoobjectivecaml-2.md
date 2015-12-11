@@ -438,4 +438,35 @@ Cons (1,
   Cons (3, Cons (4, Cons (11, Cons (12, Cons (13, Cons (14, Nil))))))))
 ```
 
+### 6.2
+
+```ocaml
+# type unary_number = Z | S of unary_number;;
+type unary_number = Z | S of unary_number
+```
+
+デバッグ用に
+
+```ocaml
+# let int_of_unary_number x = let rec loop a x = match x with Z -> a | S x -> loop (a + 1) x in loop 0 x;;
+val int_of_unary_number : unary_number -> int = <fun>
+```
+
+```ocaml
+# int_of_unary_number S(S(Z))
+  ;;
+Characters 0-19:
+  int_of_unary_number S(S(Z))
+  ^^^^^^^^^^^^^^^^^^^
+Error: This function has type unary_number -> int
+       It is applied to too many arguments; maybe you forgot a `;'.
+# S(S(Z));;
+- : unary_number = S (S Z)
+# int_of_unary_number ( S(S(Z)) );;
+- : int = 2
+```
+
+関数の引数になるとこでだけ気をつけないとあかんってことだな。
+ちょっと前に「Consの前にもうしろにもカッコ要る」とか書いたけど、外側のカッコはいちばん外側だけでよかったにちがいない。
+
 <!-- vi: se ft=markdown : -->
