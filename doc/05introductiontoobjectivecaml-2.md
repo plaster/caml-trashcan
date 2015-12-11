@@ -492,6 +492,16 @@ val add_unary_number : unary_number -> unary_number -> unary_number = <fun>
 - : int = 55
 ```
 
+```ocaml
+# let rec mult_unary_number x y = let rec loop a x = match x with Z -> a | (S x) -> loop (add_unary_number a y) x in loop Z x;;             
+val mult_unary_number : unary_number -> unary_number -> unary_number = <fun>
+# int_of_unary_number (mult_unary_number (unary_number_of_int 7) (unary_number_of_int 6));;
+- : int = 42
+# mult_unary_number Z (unary_number_of_int 100);;
+- : unary_number = Z
+# mult_unary_number (unary_number_of_int 100) Z;;
+- : unary_number = Z
+```
 
 
 
