@@ -469,4 +469,30 @@ Error: This function has type unary_number -> int
 関数の引数になるとこでだけ気をつけないとあかんってことだな。
 ちょっと前に「Consの前にもうしろにもカッコ要る」とか書いたけど、外側のカッコはいちばん外側だけでよかったにちがいない。
 
+```ocaml
+# map (fun x -> x * x) ( Cons( 1, Cons( 2, Cons( 3, Cons( 4, Nil ) ) ) ) );;
+- : int mylist = Cons (1, Cons (4, Cons (9, Cons (16, Nil))))
+```
+
+うむ。閑話休題、デバッグ用をもうちょっと追加定義。
+
+```ocaml
+# let unary_number_of_int x = let rec loop a x = match x with 0 -> a | _ -> loop (S a) (x - 1) in loop Z x;;
+val unary_number_of_int : int -> unary_number = <fun>
+# unary_number_of_int 10;;
+- : unary_number = S (S (S (S (S (S (S (S (S (S Z)))))))))
+# int_of_unary_number (unary_number_of_int 10);;
+- : int = 10
+```
+
+```ocaml
+# let rec add_unary_number x y = match y with Z -> x | (S y) -> add_unary_number (S x) y;;
+val add_unary_number : unary_number -> unary_number -> unary_number = <fun>
+# int_of_unary_number (add_unary_number (unary_number_of_int 5) (unary_number_of_int 50) );;
+- : int = 55
+```
+
+
+
+
 <!-- vi: se ft=markdown : -->
