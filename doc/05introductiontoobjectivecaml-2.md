@@ -503,6 +503,24 @@ val mult_unary_number : unary_number -> unary_number -> unary_number = <fun>
 - : unary_number = Z
 ```
 
+### 6.3
 
+これはかんたん。
+……でいいんだよね？
+
+```ocaml
+# type small = Four | Three | Two | One;;
+type small = Four | Three | Two | One
+# Four < One;;
+- : bool = true
+# let lt_small x y = y < x;;
+val lt_small : 'a -> 'a -> bool = <fun>
+# lt_small One Four;;
+- : bool = true
+# lt_small Four One;;
+- : bool = false
+```
+
+6.3.2のツッコミに対しては、「typeがどんだけふくれようと lt_small の定義は拡張の必要なし」
 
 <!-- vi: se ft=markdown : -->
