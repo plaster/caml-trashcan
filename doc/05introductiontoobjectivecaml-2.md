@@ -551,6 +551,7 @@ type exp =
   | Binary (e0, Mul, e1) -> (eval e0) * (eval e1)
   | Binary (e0, Div, e1) -> (eval e0) / (eval e1)
   ;;
+val eval : exp -> int = <fun>
 ```
 
 <!-- vi: se ft=markdown : -->
