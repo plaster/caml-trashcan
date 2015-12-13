@@ -523,4 +523,34 @@ val lt_small : 'a -> 'a -> bool = <fun>
 
 6.3.2のツッコミに対しては、「typeがどんだけふくれようと lt_small の定義は拡張の必要なし」
 
+
+### 6.4
+
+```ocaml
+# type unop = Neg
+type binop = Add | Sub | Mul | Div
+type exp =
+  Constant of int
+| Unary of unop * exp
+| Binary of exp * binop * exp          
+  ;;
+type unop = Neg
+type binop = Add | Sub | Mul | Div
+type exp =
+    Constant of int
+  | Unary of unop * exp
+  | Binary of exp * binop * exp
+```
+
+```ocaml
+# let rec eval = function
+    Constant n -> n
+  | Unary (Neg, e) -> -1 * eval e
+  | Binary (e0, Add, e1) -> (eval e0) + (eval e1)
+  | Binary (e0, Sub, e1) -> (eval e0) - (eval e1)
+  | Binary (e0, Mul, e1) -> (eval e0) * (eval e1)
+  | Binary (e0, Div, e1) -> (eval e0) / (eval e1)
+  ;;
+```
+
 <!-- vi: se ft=markdown : -->
