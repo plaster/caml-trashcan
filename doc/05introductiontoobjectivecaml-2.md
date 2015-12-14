@@ -596,4 +596,22 @@ val add : ('a, 'b) dictionary -> 'a -> 'b -> ('a, 'b) dictionary = <fun>
 val find : ('a, 'b) dictionary -> 'a -> 'b = <fun>
 ```
 
+```ocaml
+# let d = add (add (add (add empty 10 "abc") 20 "def") 15 "ZZZ") 40 "hoge";; 
+val d : (int, string) dictionary =
+  Node (10, "abc", Leaf,
+   Node (20, "def", Node (15, "ZZZ", Leaf, Leaf),
+    Node (40, "hoge", Leaf, Leaf)))
+# find d 20;;
+- : string = "def"
+# find d 15;;
+- : string = "ZZZ"
+# find d 40;;
+- : string = "hoge"
+# find d 10;;
+- : string = "abc"
+# find d 42;;
+Exception: Not_found.
+```
+
 <!-- vi: se ft=markdown : -->
