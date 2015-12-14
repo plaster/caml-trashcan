@@ -554,4 +554,21 @@ type exp =
 val eval : exp -> int = <fun>
 ```
 
+```ocaml
+# eval ( Binary( Constant 10, Add, Constant 15 ) );;
+- : int = 25
+```
+
+もっといくつかの例で確かめるべきというか例を先につくっておくくらいの習慣がほしい。。。
+
+### 6.5
+
+```ocaml
+# type ('key, 'value) dictionary = Leaf | Node of 'key * 'value * ('key, 'value) dictionary * ('key, 'value) dictionary;;
+type ('key, 'value) dictionary =
+    Leaf
+  | Node of 'key * 'value * ('key, 'value) dictionary *
+      ('key, 'value) dictionary
+```
+
 <!-- vi: se ft=markdown : -->
