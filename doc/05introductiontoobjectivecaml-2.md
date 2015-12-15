@@ -614,4 +614,25 @@ val d : (int, string) dictionary =
 Exception: Not_found.
 ```
 
+### 6.6
+
+準備。
+```ocaml
+# type vertex = int;;
+type vertex = int
+# type graph = (vertex, vertex list) dictionary;;
+type graph = (vertex, vertex list) dictionary
+```
+
+visitedな頂点を判定できるようにしておく。
+
+```ocaml
+# type vertex_set = (vertex, bool) dictionary;;
+type vertex_set = (vertex, bool) dictionary
+# let member dic k = try match find dic k with _ -> true with Not_found -> false;;
+val member : ('a, 'b) dictionary -> 'a -> bool = <fun>
+```
+
+さてreachableを、、、といきたいところだが、再帰でvisitedをためてくのをpureに書くのってどうやるのがいいんだったっけ。。
+
 <!-- vi: se ft=markdown : -->
