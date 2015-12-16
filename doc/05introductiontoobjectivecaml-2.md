@@ -627,8 +627,8 @@ type graph = (vertex, vertex list) dictionary
 visitedな頂点を判定できるようにしておく。
 
 ```ocaml
-# type vertex_set = (vertex, bool) dictionary;;
-type vertex_set = (vertex, bool) dictionary
+# type vertex_set = (vertex, unit) dictionary;;
+type vertex_set = (vertex, unit) dictionary
 # let member dic k = try match find dic k with _ -> true with Not_found -> false;;
 val member : ('a, 'b) dictionary -> 'a -> bool = <fun>
 ```
@@ -636,5 +636,27 @@ val member : ('a, 'b) dictionary -> 'a -> bool = <fun>
 さてreachableを、、、といきたいところだが、再帰でvisitedをためてくのをpureに書くのってどうやるのがいいんだったっけ。。
 
 ちょっとおやすみ。プロンプトに直打ちするのやめて、スクリプトにした。
+
+途中で探索打ち切れないのがちょい残念だけど、「行ける場所全列挙して、その中に目的地があるか確かめる」ようにしてみた
+
+```ocaml
+let reachable_vertices (g : graph) (s : vertex) =
+  let rec loop (vs : vertex_set) (ss : vertex list) =
+    match ss with
+      [] -> vs
+    | s :: ss ->
+      if member vs s
+      then vs
+      else
+        let children = try find g s with Not_found -> []
+        in loop ( loop ( add vs s () )
+                       children )
+                ss
+  in loop empty [s]
+
+let reachable (g : graph) (s : vertex) (d : vertex) =
+  let vs = reachable_vertices empty s
+  in member vs d
+```
 
 <!-- vi: se ft=markdown : -->
