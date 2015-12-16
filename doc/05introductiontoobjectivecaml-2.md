@@ -635,4 +635,6 @@ val member : ('a, 'b) dictionary -> 'a -> bool = <fun>
 
 さてreachableを、、、といきたいところだが、再帰でvisitedをためてくのをpureに書くのってどうやるのがいいんだったっけ。。
 
+ちょっとおやすみ。プロンプトに直打ちするのやめて、スクリプトにした。
+
 <!-- vi: se ft=markdown : -->
