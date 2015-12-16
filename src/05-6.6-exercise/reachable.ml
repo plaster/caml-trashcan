@@ -43,12 +43,10 @@ let reachable_vertices (g : graph) (s : vertex) =
       if member vs s
       then vs
       else
-        try
-          let children = find g s
-          in loop ( loop ( add vs s () )
-                         children )
-                  ss
-        with Not_found -> vs
+        let children = try find g s with Not_found -> []
+        in loop ( loop ( add vs s () )
+                       children )
+                ss
   in loop empty [s]
 
 let reachable (g : graph) (s : vertex) (d : vertex) =
