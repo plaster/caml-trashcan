@@ -33,4 +33,24 @@ let member dic k =
 
 type vertex = int
 type graph = (vertex, vertex list) dictionary
-type vertex_set = (vertex, bool) dictionary
+type vertex_set = (vertex, unit) dictionary
+
+let reachable_vertices (g : graph) (s : vertex) =
+  let rec loop (vs : vertex_set) (ss : vertex list) =
+    match ss with
+      [] -> vs
+    | s :: ss ->
+      if member vs s
+      then vs
+      else
+        try
+          let children = find g s
+          in loop ( loop ( add vs s () )
+                         children )
+                  ss
+        with Not_found -> vs
+  in loop empty [s]
+
+let reachable (g : graph) (s : vertex) (d : vertex) =
+  let vs = reachable_vertices empty s
+  in member vs d
