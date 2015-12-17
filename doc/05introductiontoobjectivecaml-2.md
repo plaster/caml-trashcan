@@ -659,4 +659,11 @@ let reachable (g : graph) (s : vertex) (d : vertex) =
   in member vs d
 ```
 
+### 6.7
+
+### 6.8
+
+だんだんだるくなってきた。。。（
+こんなときはさっさと先を読み進めるほうがよいだろう 
+
 <!-- vi: se ft=markdown : -->
