@@ -50,5 +50,5 @@ let reachable_vertices (g : graph) (s : vertex) =
   in loop empty [s]
 
 let reachable (g : graph) (s : vertex) (d : vertex) =
-  let vs = reachable_vertices empty s
+  let vs = reachable_vertices g s
   in member vs d
