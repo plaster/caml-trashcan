@@ -670,4 +670,7 @@ let reachable (g : graph) (s : vertex) (d : vertex) =
 OCamlと文法近いから、ここでごちゃごちゃやってたおかげで、ほんのりハードルさがってるのはありがたい。
 それはそうといつも使ってるノート端末をwheezy→jessieにしようとしたらネットワークにつながらなくなってさあ大変
 
+### 7
+
+
 <!-- vi: se ft=markdown : -->
